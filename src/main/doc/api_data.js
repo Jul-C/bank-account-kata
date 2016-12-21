@@ -1,0 +1,508 @@
+define({ "api": [
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Request a single account</p>",
+    "type": "get",
+    "url": "/accounts/:accountNo",
+    "title": "GetAccount",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>The account Number</p>"
+          },
+          {
+            "group": "200",
+            "type": "Number",
+            "optional": false,
+            "field": "balance",
+            "description": "<p>The account balance</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accountNo\": \"ABCD\",\n  \"balance\": \"1200.23\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>ResourceNotFound The <code>accountNo</code> of the Account was not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "GetAccountsAccountno"
+  },
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Request the list of operations attached to an account</p>",
+    "type": "get",
+    "url": "/accounts/:accountNo/operations",
+    "title": "ListAccountOperations",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "operations",
+            "description": "<p>List of the operations.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "operations.id",
+            "description": "<p>Operation identifier.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "operations.operationType",
+            "description": "<p>Operation type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "operations.amount",
+            "description": "<p>Operation amount.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "operations.balance",
+            "description": "<p>Account resulting balance.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>ResourceNotFound The <code>accountNo</code> of the Account was not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "GetAccountsAccountnoOperations"
+  },
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Request detail information on a specific account operation</p>",
+    "type": "get",
+    "url": "/accounts/:accountNo/operations/:operationId",
+    "title": "GetAccountOperation",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "operationId",
+            "description": "<p>Operation identifier</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>ResourceNotFound <code>accountNo</code> or <code>operationId</code> not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "GetAccountsAccountnoOperationsOperationid"
+  },
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Create an account</p>",
+    "type": "post",
+    "url": "/accounts/:accountNo",
+    "title": "CreateAccount",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number to create</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>The account Number</p>"
+          },
+          {
+            "group": "201",
+            "type": "Number",
+            "optional": false,
+            "field": "balance",
+            "description": "<p>The account balance</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 OK\n{\n  \"accountNo\": \"ABCD\",\n  \"balance\": \"0\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "422",
+            "description": "<p>UnprocessableEntity The <code>accountNo</code> already exists</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Unprocessable Entity",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "PostAccountsAccountno"
+  },
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Deposit money on an account. It will generate an account operation.</p>",
+    "type": "post",
+    "url": "/accounts/:accountNo/deposits",
+    "title": "MakeDeposit",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "type": "Header",
+            "optional": false,
+            "field": "location",
+            "description": "<p>(Response Header) The location of the created operation.</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Operation identifier.</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "operationType",
+            "description": "<p>Operation type.</p>"
+          },
+          {
+            "group": "201",
+            "type": "Date",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>Operation amount.</p>"
+          },
+          {
+            "group": "201",
+            "type": "Date",
+            "optional": false,
+            "field": "balance",
+            "description": "<p>Account resulting balance.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 OK\n{\n  \"id\": \"1\",\n  \"operationType\": \"DEPOSIT\",\n  \"date\": 1482319651288,\n  \"amount\": 400,\n  \"balance\": 400\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>ResourceNotFound The <code>accountNo</code> of the Account was not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "422",
+            "description": "<p>UnprocessableEntity The <code>amount</code> is negative</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Unprocessable Entity",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "PostAccountsAccountnoDeposits"
+  },
+  {
+    "version": "1.0.0",
+    "group": "Account",
+    "description": "<p>Withdraw money on an account. It will generate an account operation.</p>",
+    "type": "post",
+    "url": "/accounts/:accountNo/withdrawals",
+    "title": "MakeWithdraw",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accountNo",
+            "description": "<p>Account number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "type": "Header",
+            "optional": false,
+            "field": "location",
+            "description": "<p>(Response Header) The location of the created operation.</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Operation identifier.</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "operationType",
+            "description": "<p>Operation type.</p>"
+          },
+          {
+            "group": "201",
+            "type": "Date",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>Operation amount.</p>"
+          },
+          {
+            "group": "201",
+            "type": "Date",
+            "optional": false,
+            "field": "balance",
+            "description": "<p>Account resulting balance.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 OK\n{\n  \"id\": \"1\",\n  \"operationType\": \"WITHDRAWAL\",\n  \"date\": 1482319651288,\n  \"amount\": 400,\n  \"balance\": 400\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>ResourceNotFound The <code>accountNo</code> of the Account was not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "422",
+            "description": "<p>UnprocessableEntity The <code>amount</code> is negative, or greater than the amount balance</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Unprocessable Entity",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./java/com/bank/account/controller/AccountController.java",
+    "groupTitle": "Account",
+    "name": "PostAccountsAccountnoWithdrawals"
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./doc/main.js",
+    "group": "C__boulot_ides_infor_kata_account_src_main_doc_main_js",
+    "groupTitle": "C__boulot_ides_infor_kata_account_src_main_doc_main_js",
+    "name": ""
+  }
+] });

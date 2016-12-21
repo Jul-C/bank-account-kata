@@ -1,0 +1,12 @@
+{
+  "name": "Bank Account",
+  "version": "1.0.0",
+  "description": "The Rest API documentation",
+  "title": "Account API Documentation",
+  "url" : "http://localhost:8080",
+  "sampleUrl": "http://localhost:8080",
+  "template": {
+          "withCompare": true,
+          "withGenerator": true
+  }
+}
